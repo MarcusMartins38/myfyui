@@ -6,7 +6,7 @@ type CardProps = {
   title: string;
   value: number;
   tagText: string;
-  tagColor: string;
+  tagColor: 'green' | 'red';
   iconBgColor: string;
 };
 

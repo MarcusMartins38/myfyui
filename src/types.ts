@@ -1,6 +1,9 @@
+export type TrasactionStatusT = 'income' | 'outcome';
 export type TransactionT = {
+  id: number;
   name: string;
   date: Date;
   amount: number;
-  status: 'income' | 'outcome';
+  status: TrasactionStatusT;
+  userId: number;
 };

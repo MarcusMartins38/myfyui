@@ -1,0 +1,29 @@
+{
+    "transactions": [
+      {
+        "id": 1,
+        "name": "Supermercado XYZ",
+        "date": "2024-10-01T10:00:00Z",
+        "amount": 150.75,
+        "status": "outcome",
+        "userId": 1
+      },
+      {
+        "id": 2,
+        "name": "Freelance Design",
+        "date": "2024-10-05T15:30:00Z",
+        "amount": 600.00,
+        "status": "income",
+        "userId": 1
+      },
+      {
+        "id": 3,
+        "name": "Posto de Gasolina ABC",
+        "date": "2024-10-10T08:15:00Z",
+        "amount": 120.00,
+        "status": "outcome",
+        "userId": 2
+      }
+    ]
+  }
+  
