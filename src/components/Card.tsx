@@ -1,4 +1,4 @@
-import { formatAmout } from '../lib/utils';
+import { formatAmount } from '../lib/utils';
 import Tag from './Tag';
 
 type CardProps = {
@@ -18,7 +18,7 @@ const Card = ({ icon, title, value, tagText, tagColor, iconBgColor }: CardProps)
       </div>
       <div className="flex flex-col items-start justify-between">
         <span className="card-title text-sm">{title}</span>
-        <h2 className="font-bold text-2xl">{formatAmout(value)}</h2>
+        <h2 className="font-bold text-2xl">{formatAmount(value)}</h2>
       </div>
       <Tag text={tagText} color={tagColor} />
     </div>

@@ -1,14 +1,8 @@
 import { useState } from 'react';
-import { formatAmout, formatDate } from '../lib/utils';
+import { formatAmount, formatDate } from '../lib/utils';
+import { TransactionT } from '../types';
 import Tag from './Tag';
 import TransactionModal from './TransactionModal';
-
-type TransactionT = {
-  name: string;
-  date: Date;
-  amount: number;
-  status: 'income' | 'outcome';
-};
 
 const colorTailwindMap = {
   income: 'green',
@@ -28,10 +22,13 @@ export default function TransactionTable() {
 
   const handleOpen = () => setIsModalOpen(true);
 
-  const handleAddTransactionClick = () => {};
   return (
     <>
-      <TransactionModal isOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
+      <TransactionModal
+        isOpen={isModalOpen}
+        setIsModalOpen={setIsModalOpen}
+        setTransactionState={setTransactionState}
+      />
 
       <div className="overflow-x-auto bg-base-200 rounded-2xl">
         <header className="flex flex-row w-[calc(100%-8px)] m-1">
@@ -51,7 +48,7 @@ export default function TransactionTable() {
           </thead>
           <tbody>
             {transactionState.map((transaction) => (
-              <tr>
+              <tr key={transaction.name}>
                 <td>
                   <div className="flex items-center gap-3">
                     <div className="avatar">
@@ -68,7 +65,7 @@ export default function TransactionTable() {
                   </div>
                 </td>
                 <td>{formatDate(transaction.date)}</td>
-                <td>{formatAmout(transaction.amount)}</td>
+                <td>{formatAmount(transaction.amount)}</td>
                 <td>
                   <Tag text={transaction.status} color={colorTailwindMap[transaction.status]} />
                 </td>

@@ -1,17 +1,35 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { formatAmount, formatDate } from '../lib/utils';
+import { TransactionT } from '../types';
 
-type TransactionModal = {
+type TransactionModalProps = {
   isOpen: boolean;
   setIsModalOpen: (isOpen: boolean) => void;
+  setTransactionState: (transaction: TransactionT[]) => void;
 };
 
-const TransactionModal = ({ isOpen, setIsModalOpen }: TransactionModal) => {
+const TransactionModal = ({
+  isOpen,
+  setIsModalOpen,
+  setTransactionState,
+}: TransactionModalProps) => {
   const [transactionType, setTransactionType] = useState('income');
-  const [description, setDescription] = useState('');
-  const [amount, setAmount] = useState('');
+  const [name, setName] = useState('');
+  const [amount, setAmount] = useState(0);
 
   const handleClose = () => setIsModalOpen(false);
   const handleSave = () => {
+    const currentDate = new Date();
+
+    const newTransaction = {
+      name,
+      date: currentDate,
+      amount: formatAmount(Number(amount)),
+      status: transactionType,
+    };
+
+    console.log({ newTransaction });
+    setTransactionState((prev) => [...prev, newTransaction]);
     handleClose();
   };
 
@@ -29,8 +47,8 @@ const TransactionModal = ({ isOpen, setIsModalOpen }: TransactionModal) => {
               <input
                 type="text"
                 className="input input-bordered"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
+                value={name}
+                onChange={(e) => setName(e.target.value)}
               />
             </div>
 

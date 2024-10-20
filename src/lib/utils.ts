@@ -1,4 +1,8 @@
 export const formatDate = (date: Date) => {
+  if (!(date instanceof Date) || isNaN(date.getTime())) {
+    throw new Error('Invalid date');
+  }
+
   return date.toLocaleDateString('en-GB', {
     weekday: 'short',
     day: '2-digit',
@@ -7,7 +11,7 @@ export const formatDate = (date: Date) => {
   });
 };
 
-export const formatAmout = (amount: Number) => {
+export const formatAmount = (amount: number) => {
   return amount.toLocaleString('pt-BR', {
     style: 'currency',
     currency: 'BRL',

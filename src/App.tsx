@@ -1,13 +1,8 @@
-import { useState } from 'react';
-import './App.css';
 import Card from './components/Card';
 import Sidebar from './components/Sidebar';
-import Tag from './components/Tag';
 import TransactionTable from './components/TransactionTable';
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <div className="flex flex-row w-full h-full">
       <Sidebar />
