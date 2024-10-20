@@ -1,11 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { formatAmout, formatDate } from '../lib/utils';
 import Tag from './Tag';
 
+type TransactionT = {
+  name: string;
+  date: Date;
+  amount: number;
+  status: 'income' | 'outcome';
+};
+
+const colorTailwindMap = {
+  income: 'green',
+  outcome: 'red',
+};
+
 export default function TransactionTable() {
+  const [transactionState, setTransactionState] = useState<TransactionT[]>([
+    {
+      name: 'Market',
+      date: new Date(),
+      amount: 80.5,
+      status: 'outcome',
+    },
+  ]);
+
+  const handleAddTransactionClick = () => {};
   return (
     <div className="overflow-x-auto bg-base-200 rounded-2xl">
+      <header className="flex flex-row w-[calc(100%-8px)] m-1">
+        <button className="btn hover:bg-success/50">Add Transaction</button>
+      </header>
+
       <table className="table">
-        {/* head */}
         <thead>
           <tr>
             <th>Name</th>
@@ -15,77 +41,31 @@ export default function TransactionTable() {
           </tr>
         </thead>
         <tbody>
-          {/* row 1 */}
-          <tr>
-            <td>
-              <div className="flex items-center gap-3">
-                <div className="avatar">
-                  <div className="mask mask-squircle h-10 w-10">
-                    <img
-                      src="https://img.daisyui.com/images/profile/demo/2@94.webp"
-                      alt="Avatar Tailwind CSS Component"
-                    />
+          {transactionState.map((transaction) => (
+            <tr>
+              <td>
+                <div className="flex items-center gap-3">
+                  <div className="avatar">
+                    <div className="mask mask-squircle h-10 w-10">
+                      <img
+                        src="https://img.daisyui.com/images/profile/demo/2@94.webp"
+                        alt="Avatar Tailwind CSS Component"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <div className="font-bold">{transaction.name}</div>
                   </div>
                 </div>
-                <div>
-                  <div className="font-bold">Hart Hagerty</div>
-                </div>
-              </div>
-            </td>
-            <td>Zemlak, Daniel and Leannon</td>
-            <td>Purple</td>
-            <td>
-              <Tag text="Deposited" color="green" />
-            </td>
-          </tr>
-          {/* row 2 */}
-          <tr>
-            <td>
-              <div className="flex items-center gap-3">
-                <div className="avatar">
-                  <div className="mask mask-squircle h-10 w-10">
-                    <img
-                      src="https://img.daisyui.com/images/profile/demo/3@94.webp"
-                      alt="Avatar Tailwind CSS Component"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <div className="font-bold">Brice Swyre</div>
-                </div>
-              </div>
-            </td>
-            <td>Carroll Group</td>
-            <td>Red</td>
-            <td>
-              <span>Deposited</span>
-            </td>
-          </tr>
-          {/* row 3 */}
-          <tr>
-            <td>
-              <div className="flex items-center gap-3">
-                <div className="avatar">
-                  <div className="mask mask-squircle h-10 w-10">
-                    <img
-                      src="https://img.daisyui.com/images/profile/demo/4@94.webp"
-                      alt="Avatar Tailwind CSS Component"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <div className="font-bold">Marjy Ferencz</div>
-                </div>
-              </div>
-            </td>
-            <td>Rowe-Schoen</td>
-            <td>Crimson</td>
-            <td>
-              <span>Deposited</span>
-            </td>
-          </tr>
+              </td>
+              <td>{formatDate(transaction.date)}</td>
+              <td>{formatAmout(transaction.amount)}</td>
+              <td>
+                <Tag text={transaction.status} color={colorTailwindMap[transaction.status]} />
+              </td>
+            </tr>
+          ))}
         </tbody>
-        {/* foot */}
       </table>
     </div>
   );

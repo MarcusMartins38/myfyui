@@ -1,5 +1,3 @@
-import React from 'react';
-
 type TagProps = {
   color: 'green' | 'red';
   text: string;
