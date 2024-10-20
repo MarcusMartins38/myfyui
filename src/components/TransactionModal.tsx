@@ -1,20 +1,17 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addTransaction } from '../redux/transaction/transactionActions';
+import { setTransactionModalOpen } from '../redux/transactionModal/transactionModalActions';
 import { TransactionT, TrasactionStatusT } from '../types';
 
-type TransactionModalProps = {
-  isOpen: boolean;
-  setIsModalOpen: (isOpen: boolean) => void;
-};
-
-const TransactionModal = ({ isOpen, setIsModalOpen }: TransactionModalProps) => {
+const TransactionModal = () => {
   const [transactionType, setTransactionType] = useState<TrasactionStatusT>('income');
   const [name, setName] = useState('');
   const [amount, setAmount] = useState(0);
+  const { isOpen } = useSelector((store) => store.transactionModalReducer);
   const dispatch = useDispatch();
 
-  const handleClose = () => setIsModalOpen(false);
+  const handleClose = () => dispatch(setTransactionModalOpen(false));
   const handleSave = () => {
     const currentDate = new Date();
 
