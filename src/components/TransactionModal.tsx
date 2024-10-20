@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addTransaction } from '../redux/transaction/transactionActions';
-import { setTransactionModalOpen } from '../redux/transactionModal/transactionModalActions';
+import { addTransaction } from '../redux/transaction/transaction.actions';
+import { setTransactionModalOpen } from '../redux/transactionModal/transactionModal.actions';
 import { TransactionT, TrasactionStatusT } from '../types';
 
 const TransactionModal = () => {

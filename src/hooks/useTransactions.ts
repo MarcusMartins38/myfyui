@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { addManyTransactions } from '../redux/transaction/transactionActions';
+import { addManyTransactions } from '../redux/transaction/transaction.actions';
 
 export const useTransactions = () => {
   const dispatch = useDispatch();

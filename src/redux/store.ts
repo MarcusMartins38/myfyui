@@ -1,6 +1,6 @@
 import { combineReducers, createStore } from 'redux';
-import { transactionReducer } from './transaction/transactionReducer';
-import { transactionModalReducer } from './transactionModal/transactionModalReducer';
+import { transactionReducer } from './transaction/transaction.reducer';
+import { transactionModalReducer } from './transactionModal/transactionModal.reducer';
 
 const combinedReducers = combineReducers({
   transactionReducer,

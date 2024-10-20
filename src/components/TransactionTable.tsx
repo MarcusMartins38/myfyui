@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useTransactions } from '../hooks/useTransactions';
 import { formatAmount, formatDate } from '../lib/utils';
-import { setTransactionModalOpen } from '../redux/transactionModal/transactionModalActions';
+import { setTransactionModalOpen } from '../redux/transactionModal/transactionModal.actions';
 import { TransactionT } from '../types';
 import Tag from './Tag';
 import TransactionModal from './TransactionModal';

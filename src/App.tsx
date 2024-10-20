@@ -1,8 +1,12 @@
+import { useSelector } from 'react-redux';
 import Card from './components/Card';
 import Sidebar from './components/Sidebar';
 import TransactionTable from './components/TransactionTable';
+import { selectTotalIncome, selectTotalOutcome } from './redux/transaction/transaction.selectors';
 
 function App() {
+  const totalIncome = useSelector(selectTotalIncome);
+  const totalOutcome = useSelector(selectTotalOutcome);
   return (
     <div className="flex flex-row w-full h-full">
       <Sidebar />
@@ -20,7 +24,7 @@ function App() {
               <Card
                 icon="t"
                 title="Total Income"
-                value={63002.0}
+                value={totalIncome}
                 tagText="+5.10%"
                 tagColor="green"
                 iconBgColor="bg-secondary"
@@ -28,7 +32,7 @@ function App() {
               <Card
                 icon="t"
                 title="Total Income"
-                value={632.0}
+                value={totalOutcome}
                 tagText="-1.30%"
                 tagColor="red"
                 iconBgColor="bg-primary"

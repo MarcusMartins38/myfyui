@@ -1,4 +1,4 @@
-import { TRANSACTION_MODAL_SET_IS_OPEN } from './transactionModalActions';
+import { TRANSACTION_MODAL_SET_IS_OPEN } from './transactionModal.actions';
 
 const initialState = {
   isOpen: false,

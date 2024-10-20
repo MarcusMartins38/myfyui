@@ -1,5 +1,5 @@
 import { TransactionT } from '../../types';
-import { ADD_MANY_TRANSACTION, ADD_TRANSACTION } from './transactionActions';
+import { ADD_MANY_TRANSACTION, ADD_TRANSACTION } from './transaction.actions';
 
 type InitialStateProps = {
   transactions: TransactionT[];
