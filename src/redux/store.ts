@@ -1,4 +1,4 @@
-import { createStore, combineReducers } from 'redux';
+import { combineReducers, createStore } from 'redux';
 import { transactionReducer } from './transaction/transactionReducer';
 import { transactionModalReducer } from './transactionModal/transactionModalReducer';
 
@@ -7,5 +7,8 @@ const combinedReducers = combineReducers({
   transactionModalReducer,
 });
 
-const store = createStore(combinedReducers);
+const store = createStore(
+  combinedReducers,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+);
 export default store;

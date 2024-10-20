@@ -1,6 +1,6 @@
 export const formatDate = (date: Date) => {
   if (!(date instanceof Date) || isNaN(date.getTime())) {
-    throw new Error('Invalid date');
+    return date;
   }
 
   return date.toLocaleDateString('en-GB', {
