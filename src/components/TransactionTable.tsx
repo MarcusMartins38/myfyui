@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { formatAmount, formatDate } from '../lib/utils';
-import { TransactionT } from '../types';
+import { useSelector } from 'react-redux';
 import Tag from './Tag';
 import TransactionModal from './TransactionModal';
 
@@ -10,25 +10,14 @@ const colorTailwindMap = {
 };
 
 export default function TransactionTable() {
+  const { transactions } = useSelector((store) => store.transactionReducer);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [transactionState, setTransactionState] = useState<TransactionT[]>([
-    {
-      name: 'Market',
-      date: new Date(),
-      amount: 80.5,
-      status: 'outcome',
-    },
-  ]);
 
   const handleOpen = () => setIsModalOpen(true);
 
   return (
     <>
-      <TransactionModal
-        isOpen={isModalOpen}
-        setIsModalOpen={setIsModalOpen}
-        setTransactionState={setTransactionState}
-      />
+      <TransactionModal isOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
 
       <div className="overflow-x-auto bg-base-200 rounded-2xl">
         <header className="flex flex-row w-[calc(100%-8px)] m-1">
@@ -47,7 +36,7 @@ export default function TransactionTable() {
             </tr>
           </thead>
           <tbody>
-            {transactionState.map((transaction) => (
+            {transactions.map((transaction) => (
               <tr key={transaction.name}>
                 <td>
                   <div className="flex items-center gap-3">

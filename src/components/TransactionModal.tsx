@@ -1,35 +1,31 @@
 import { useState } from 'react';
-import { formatAmount, formatDate } from '../lib/utils';
-import { TransactionT } from '../types';
+import { useDispatch } from 'react-redux';
+import { addTransaction } from '../redux/transaction/transactionActions';
+import { TransactionT, TrasactionStatusT } from '../types';
 
 type TransactionModalProps = {
   isOpen: boolean;
   setIsModalOpen: (isOpen: boolean) => void;
-  setTransactionState: (transaction: TransactionT[]) => void;
 };
 
-const TransactionModal = ({
-  isOpen,
-  setIsModalOpen,
-  setTransactionState,
-}: TransactionModalProps) => {
-  const [transactionType, setTransactionType] = useState('income');
+const TransactionModal = ({ isOpen, setIsModalOpen }: TransactionModalProps) => {
+  const [transactionType, setTransactionType] = useState<TrasactionStatusT>('income');
   const [name, setName] = useState('');
   const [amount, setAmount] = useState(0);
+  const dispatch = useDispatch();
 
   const handleClose = () => setIsModalOpen(false);
   const handleSave = () => {
     const currentDate = new Date();
 
-    const newTransaction = {
+    const newTransaction: TransactionT = {
       name,
       date: currentDate,
-      amount: formatAmount(Number(amount)),
+      amount: Number(amount),
       status: transactionType,
     };
 
-    console.log({ newTransaction });
-    setTransactionState((prev) => [...prev, newTransaction]);
+    dispatch(addTransaction(newTransaction));
     handleClose();
   };
 
@@ -60,7 +56,7 @@ const TransactionModal = ({
                 type="text"
                 className="input input-bordered"
                 value={amount}
-                onChange={(e) => setAmount(e.target.value)}
+                onChange={(e) => setAmount(Number(e.target.value))}
               />
             </div>
 
