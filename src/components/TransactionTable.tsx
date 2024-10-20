@@ -18,7 +18,7 @@ export default function TransactionTable() {
 
   return (
     <>
-      <TransactionModal isOpen={isModalOpen} />
+      <TransactionModal />
 
       <div className="overflow-x-auto bg-base-200 rounded-2xl">
         <header className="flex flex-row w-[calc(100%-8px)] m-1">
