@@ -12,15 +12,15 @@ function App() {
       <Sidebar />
 
       <div className="px-6 pt-4 w-full h-full">
-        <header className="flex flex-col items-start">
-          <h1>Welcome User!</h1>
+        <header className="flex flex-col items-start mb-4">
+          <h2 className="text-2xl font-bold">Welcome User!</h2>
           <p>Here’s what’s happening with your store today.</p>
         </header>
 
         <main className="flex flex-row w-full h-full">
           {/*Vertical Container*/}
           <div className="flex flex-col h-full w-full">
-            <section className="flex flex-col md:flex-row">
+            <section className="flex flex-col md:flex-row mb-4">
               <div className="flex flex-row items-center justify-between w-full max-w-80 py-8 px-6 bg-base-200 rounded-2xl mb-2 mr-2">
                 <div className="w-[45px] h-[45px] flex items-center justify-center rounded-lg bg-secondary">
                   t

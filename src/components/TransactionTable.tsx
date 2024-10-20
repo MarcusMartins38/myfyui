@@ -1,4 +1,5 @@
 import React from 'react';
+import Tag from './Tag';
 
 export default function TransactionTable() {
   return (
@@ -16,15 +17,10 @@ export default function TransactionTable() {
         <tbody>
           {/* row 1 */}
           <tr>
-            {/* <th>
-              <label>
-                <input type="checkbox" className="checkbox" />
-              </label>
-            </th> */}
             <td>
               <div className="flex items-center gap-3">
                 <div className="avatar">
-                  <div className="mask mask-squircle h-12 w-12">
+                  <div className="mask mask-squircle h-10 w-10">
                     <img
                       src="https://img.daisyui.com/images/profile/demo/2@94.webp"
                       alt="Avatar Tailwind CSS Component"
@@ -39,7 +35,7 @@ export default function TransactionTable() {
             <td>Zemlak, Daniel and Leannon</td>
             <td>Purple</td>
             <td>
-              <span>Deposited</span>
+              <Tag text="Deposited" color="green" />
             </td>
           </tr>
           {/* row 2 */}
@@ -47,7 +43,7 @@ export default function TransactionTable() {
             <td>
               <div className="flex items-center gap-3">
                 <div className="avatar">
-                  <div className="mask mask-squircle h-12 w-12">
+                  <div className="mask mask-squircle h-10 w-10">
                     <img
                       src="https://img.daisyui.com/images/profile/demo/3@94.webp"
                       alt="Avatar Tailwind CSS Component"
@@ -70,7 +66,7 @@ export default function TransactionTable() {
             <td>
               <div className="flex items-center gap-3">
                 <div className="avatar">
-                  <div className="mask mask-squircle h-12 w-12">
+                  <div className="mask mask-squircle h-10 w-10">
                     <img
                       src="https://img.daisyui.com/images/profile/demo/4@94.webp"
                       alt="Avatar Tailwind CSS Component"

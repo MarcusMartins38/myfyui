@@ -9,7 +9,7 @@ const Sidebar = () => {
 
   return (
     <div
-      className={`flex ${isOpen ? 'w-64' : 'w-16'} transition-width duration-300 bg-base-200 text-white h-screen`}
+      className={`flex ${isOpen ? 'min-w-64' : 'min-w-16'} transition-width duration-300 bg-base-200 text-white h-screen`}
     >
       <div className="flex flex-col w-full">
         <div className="flex items-center relative p-4">
