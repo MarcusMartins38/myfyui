@@ -15,7 +15,6 @@ const colorTailwindMap = {
 
 export default function TransactionTable() {
   const [showCalendar, setShowCalendar] = useState(false);
-  const calendarSettings = useSelector((store) => store.dateFilterReducer);
   const transactions: TransactionT[] = useSelector(
     (store) => store.transactionReducer.transactions,
   );
@@ -57,9 +56,7 @@ export default function TransactionTable() {
             >
               Filter By Date
             </button>
-            {showCalendar ? (
-              <Calendar isOpen={showCalendar} calendarSettings={calendarSettings} />
-            ) : null}
+            {showCalendar ? <Calendar /> : null}
           </div>
         </header>
 

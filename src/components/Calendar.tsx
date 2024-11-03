@@ -12,19 +12,14 @@ export default function Calendar({ className }: CalendarProps) {
   const calendarSettings = useSelector((store) => store.dateFilterReducer);
   const dispatch = useDispatch();
   const changeCalendarSettings = (item) => dispatch(setFilterDate(item));
-  console.log(calendarSettings);
 
   return (
     <DateRange
       className={`h-auto absolute z-10 ${className}`}
       editableDateInputs={true}
-      onChange={(item) => ''}
+      onChange={(item) => changeCalendarSettings(item.selection)}
       moveRangeOnFirstSelection={false}
-      ranges={{
-        startDate: new Date(),
-        endDate: null,
-        key: 'selection',
-      }}
+      ranges={[calendarSettings]}
     />
   );
 }
