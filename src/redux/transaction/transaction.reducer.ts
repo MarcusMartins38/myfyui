@@ -26,7 +26,7 @@ const initialState: InitialStateProps = {
 export const transactionReducer = (state = initialState, action: ActionProps) => {
   switch (action.type) {
     case ADD_TRANSACTION:
-      return { ...state, transactions: [...state.transactions, action.payload] };
+      return { ...state, transactions: [action.payload, ...state.transactions] };
     case ADD_MANY_TRANSACTION:
       return { ...state, transactions: [...state.transactions, ...action.payload] };
     default:
