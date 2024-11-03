@@ -1,10 +1,12 @@
 import { combineReducers, createStore } from 'redux';
+import { dateFilterReducer } from './dateFilter/dataFilter.reducers';
 import { transactionReducer } from './transaction/transaction.reducer';
 import { transactionModalReducer } from './transactionModal/transactionModal.reducer';
 
 const combinedReducers = combineReducers({
   transactionReducer,
   transactionModalReducer,
+  dateFilterReducer,
 });
 
 const store = createStore(

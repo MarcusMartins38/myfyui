@@ -7,6 +7,7 @@ import { selectTotalIncome, selectTotalOutcome } from './redux/transaction/trans
 function App() {
   const totalIncome = useSelector(selectTotalIncome);
   const totalOutcome = useSelector(selectTotalOutcome);
+
   return (
     <div className="flex flex-row w-full h-full">
       <Sidebar />
