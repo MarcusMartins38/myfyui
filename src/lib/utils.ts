@@ -18,3 +18,16 @@ export const formatAmount = (amount: number) => {
     minimumFractionDigits: 2,
   });
 };
+
+export const generateAvatarByText = (text: string) => {
+  const words = text.trim().split(/\s+/);
+
+  if (words.length === 1) {
+    const word = words[0];
+    return word.length > 1
+      ? `${word[0]}${word[word.length - 1]}`.toUpperCase()
+      : word.toUpperCase();
+  }
+
+  return `${words[0][0]}${words[1][0]}`.toUpperCase();
+};

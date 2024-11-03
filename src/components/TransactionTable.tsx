@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTransactions } from '../hooks/useTransactions';
-import { formatAmount, formatDate } from '../lib/utils';
+import { formatAmount, formatDate, generateAvatarByText } from '../lib/utils';
 import { setTransactionModalOpen } from '../redux/transactionModal/transactionModal.actions';
 import { TransactionT } from '../types';
 import Calendar from './Calendar';
@@ -79,11 +79,19 @@ export default function TransactionTable() {
                     <td>
                       <div className="flex items-center gap-3">
                         <div className="avatar">
-                          <div className="mask mask-squircle h-10 w-10">
+                          {/* <div className="mask mask-squircle h-10 w-10">
                             <img
-                              src="https://img.daisyui.com/images/profile/demo/2@94.webp"
+                              src={
+                                transaction?.img ??
+                                'https://img.daisyui.com/images/profile/demo/2@94.webp'
+                              }
                               alt="Avatar Tailwind CSS Component"
                             />
+                          </div> */}
+                          <div className="avatar placeholder">
+                            <div className="bg-neutral text-neutral-content w-12 rounded-full">
+                              <span>{generateAvatarByText(transaction.name)}</span>
+                            </div>
                           </div>
                         </div>
                         <div>
