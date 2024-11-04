@@ -19,7 +19,7 @@ export const transactionReducer = (state = initialState, action: ActionProps) =>
     case ADD_TRANSACTION:
       return { ...state, transactions: [action.payload, ...state.transactions] };
     case ADD_MANY_TRANSACTION:
-      return { ...state, transactions: [...state.transactions, ...action.payload] };
+      return { ...state, transactions: [...action.payload, ...state.transactions] };
     default:
       return state;
   }
