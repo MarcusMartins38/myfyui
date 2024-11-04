@@ -32,7 +32,7 @@ function App() {
               />
               <Card
                 icon="t"
-                title="Total Income"
+                title="Total Outcome"
                 value={totalOutcome}
                 tagText="-1.30%"
                 tagColor="red"

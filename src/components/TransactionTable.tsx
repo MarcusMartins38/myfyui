@@ -7,6 +7,7 @@ import { TransactionT } from '../types';
 import Calendar from './Calendar';
 import Tag from './Tag';
 import TransactionModal from './TransactionModal';
+import { setFilterDate } from '../redux/dateFilter/dateFilter.actions';
 
 const colorTailwindMap = {
   income: 'green',
@@ -19,8 +20,24 @@ export default function TransactionTable() {
     (store) => store.transactionReducer.transactions,
   );
   const { isLoading } = useTransactions();
+  const calendarSettings = useSelector((store) => store.dateFilterReducer);
+  const filteredTransactions = transactions.filter((transaction) => {
+    const { startDate, endDate } = calendarSettings;
+
+    if (!startDate) return true;
+
+    const transactionDate = new Date(transaction.date);
+
+    const isAfterStartDate = transactionDate >= new Date(startDate);
+    const isBeforeEndDate = endDate ? transactionDate <= new Date(endDate) : true;
+
+    return isAfterStartDate && isBeforeEndDate;
+  });
+
   const dispatch = useDispatch();
 
+  const handleClearDateFilter = (item) =>
+    dispatch(setFilterDate({ startDate: null, endDate: null }));
   const handleOpen = () => dispatch(setTransactionModalOpen(true));
 
   return (
@@ -51,12 +68,18 @@ export default function TransactionTable() {
             </label>
 
             <button
+              className="btn bg-error/40 ml-2 hover:bg-error/40"
+              onClick={handleClearDateFilter}
+            >
+              Clear Date
+            </button>
+            <button
               className="btn bg-primary ml-2 hover:bg-primary/20"
               onClick={() => setShowCalendar((prev) => !prev)}
             >
               Filter By Date
             </button>
-            {showCalendar ? <Calendar /> : null}
+            <Calendar isOpen={showCalendar} setIsOpen={setShowCalendar} />
           </div>
         </header>
 
@@ -74,7 +97,7 @@ export default function TransactionTable() {
                 </tr>
               </thead>
               <tbody>
-                {transactions.map((transaction) => (
+                {filteredTransactions.map((transaction) => (
                   <tr key={transaction.name}>
                     <td>
                       <div className="flex items-center gap-3">

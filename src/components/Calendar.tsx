@@ -6,18 +6,25 @@ import { setFilterDate } from '../redux/dateFilter/dateFilter.actions';
 
 type CalendarProps = {
   className?: string;
+  isOpen: boolean;
+  setIsOpen: (open: boolean) => void;
 };
 
-export default function Calendar({ className }: CalendarProps) {
+export default function Calendar({ className, isOpen, setIsOpen }: CalendarProps) {
   const calendarSettings = useSelector((store) => store.dateFilterReducer);
   const dispatch = useDispatch();
-  const changeCalendarSettings = (item) => dispatch(setFilterDate(item));
+  const handleChangeCalendarSettings = (item) => {
+    dispatch(setFilterDate(item));
+    setIsOpen(false);
+  };
+
+  if (!isOpen) return null;
 
   return (
     <DateRange
       className={`h-auto absolute z-10 ${className}`}
       editableDateInputs={true}
-      onChange={(item) => changeCalendarSettings(item.selection)}
+      onChange={(item) => handleChangeCalendarSettings(item.selection)}
       moveRangeOnFirstSelection={false}
       ranges={[calendarSettings]}
     />
