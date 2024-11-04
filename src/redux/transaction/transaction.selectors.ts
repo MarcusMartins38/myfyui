@@ -2,9 +2,9 @@ import { TransactionT, TrasactionStatusT } from '../../types';
 
 type FilterByTypeAndDate = {
   transaction: TransactionT;
-  type: TrasactionStatusT;
-  startDate?: Date;
-  endDate?: Date;
+  type: TrasactionStatusT | null;
+  startDate: Date | null;
+  endDate: Date | null;
 };
 
 const filterByTypeAndDate = ({
@@ -14,7 +14,7 @@ const filterByTypeAndDate = ({
   endDate,
 }: FilterByTypeAndDate): boolean => {
   const transactionDate = new Date(transaction.date);
-  const isIncome = transaction.status === type;
+  const isIncome = type === null || transaction.status === type;
 
   const isWithinDateRange =
     (startDate === null && endDate === null) ||
@@ -45,7 +45,7 @@ export const selectTotalOutcome = (store: any): number => {
   const transactions = store.transactionReducer.transactions;
   const dateFilter = store.dateFilterReducer;
 
-  const incomesTransactions = transactions.filter((transaction) =>
+  const outcomeTransactions = transactions.filter((transaction) =>
     filterByTypeAndDate({
       transaction,
       type: 'outcome',
@@ -54,5 +54,21 @@ export const selectTotalOutcome = (store: any): number => {
     }),
   );
 
-  return incomesTransactions.reduce((acc, curr) => acc + curr.amount, 0);
+  return outcomeTransactions.reduce((acc, curr) => acc + curr.amount, 0);
+};
+
+export const selectTotal = (store: any): number => {
+  const transactions = store.transactionReducer.transactions;
+  const dateFilter = store.dateFilterReducer;
+
+  const totalTransactions = transactions.filter((transaction) =>
+    filterByTypeAndDate({
+      transaction,
+      type: null,
+      startDate: dateFilter.startDate,
+      endDate: dateFilter.endDate,
+    }),
+  );
+
+  return totalTransactions.reduce((acc, curr) => acc + curr.amount, 0);
 };

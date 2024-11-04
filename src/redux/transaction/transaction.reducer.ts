@@ -11,16 +11,7 @@ type ActionProps = {
 };
 
 const initialState: InitialStateProps = {
-  transactions: [
-    {
-      id: 0,
-      name: 'Market',
-      date: new Date(),
-      amount: 80.5,
-      status: 'outcome',
-      userId: 1,
-    },
-  ],
+  transactions: [],
 };
 
 export const transactionReducer = (state = initialState, action: ActionProps) => {

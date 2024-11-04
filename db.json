@@ -4,7 +4,7 @@
       "id": 1,
       "name": "Supermercado XYZ",
       "date": "2024-10-01T10:00:00Z",
-      "amount": 150.75,
+      "amount": -150.75,
       "status": "outcome",
       "userId": 1,
       "img": "https://img.daisyui.com/images/profile/demo/2@94.webp"
@@ -22,7 +22,7 @@
       "id": 3,
       "name": "Posto de Gasolina ABC",
       "date": "2024-10-10T08:15:00Z",
-      "amount": 120.0,
+      "amount": -120.0,
       "status": "outcome",
       "userId": 2,
       "img": null

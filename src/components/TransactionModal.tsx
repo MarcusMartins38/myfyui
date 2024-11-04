@@ -3,10 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useDropzone } from 'react-dropzone';
 import { addTransaction } from '../redux/transaction/transaction.actions';
 import { setTransactionModalOpen } from '../redux/transactionModal/transactionModal.actions';
-import { TransactionT, TrasactionStatusT } from '../types';
 
 const TransactionModal = () => {
-  const [transactionType, setTransactionType] = useState('income');
   const [name, setName] = useState('');
   const [amount, setAmount] = useState(0);
   const [image, setImage] = useState(null);
@@ -20,10 +18,11 @@ const TransactionModal = () => {
     const currentDate = new Date();
 
     const newTransaction = {
+      id: Math.random() * 999,
       name,
       date: currentDate,
       amount: Number(amount),
-      status: transactionType,
+      status: amount > 0 ? 'income' : 'outcome',
       image,
     };
 
@@ -77,34 +76,6 @@ const TransactionModal = () => {
                 value={amount}
                 onChange={(e) => setAmount(Number(e.target.value))}
               />
-            </div>
-
-            <div className="flex flex-col items-start mb-4">
-              <span className="label-text mb-1">Transaction Type</span>
-              <div className="flex items-center mt-2">
-                <label className="mr-4">
-                  <input
-                    type="radio"
-                    name="transactionType"
-                    value="income"
-                    checked={transactionType === 'income'}
-                    onChange={() => setTransactionType('income')}
-                    className="radio"
-                  />
-                  <span className="ml-2">Income</span>
-                </label>
-                <label>
-                  <input
-                    type="radio"
-                    name="transactionType"
-                    value="outcome"
-                    checked={transactionType === 'outcome'}
-                    onChange={() => setTransactionType('outcome')}
-                    className="radio"
-                  />
-                  <span className="ml-2">Outcome</span>
-                </label>
-              </div>
             </div>
 
             {/* Dropzone */}

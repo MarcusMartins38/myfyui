@@ -2,11 +2,16 @@ import { useSelector } from 'react-redux';
 import Card from './components/Card';
 import Sidebar from './components/Sidebar';
 import TransactionTable from './components/TransactionTable';
-import { selectTotalIncome, selectTotalOutcome } from './redux/transaction/transaction.selectors';
+import {
+  selectTotalIncome,
+  selectTotalOutcome,
+  selectTotal,
+} from './redux/transaction/transaction.selectors';
 
 function App() {
   const totalIncome = useSelector(selectTotalIncome);
   const totalOutcome = useSelector(selectTotalOutcome);
+  const total = useSelector(selectTotal);
 
   return (
     <div className="flex flex-row w-full h-full">
@@ -21,25 +26,34 @@ function App() {
         <main className="flex flex-row w-full h-full">
           {/*Vertical Container*/}
           <div className="flex flex-col h-full w-full">
-            <section className="flex flex-col md:flex-row mb-4">
+            <section className="flex flex-col md:flex-row justify-center">
               <Card
-                icon="t"
+                icon="I"
                 title="Total Income"
                 value={totalIncome}
-                tagText="+5.10%"
+                tagText=""
                 tagColor="green"
-                iconBgColor="bg-secondary"
+                iconBgColor="bg-success"
               />
               <Card
-                icon="t"
+                icon="O"
                 title="Total Outcome"
                 value={totalOutcome}
-                tagText="-1.30%"
+                tagText=""
                 tagColor="red"
-                iconBgColor="bg-primary"
+                iconBgColor="bg-error/60"
               />
             </section>
-
+            <div className="mb-4 w-full flex justify-center">
+              <Card
+                icon="T"
+                title="Total"
+                value={total}
+                tagText=""
+                tagColor={total > 0 ? 'green' : 'red'}
+                iconBgColor={total > 0 ? 'bg-success' : 'bg-error/60'}
+              />
+            </div>
             <TransactionTable />
           </div>
 
