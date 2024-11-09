@@ -1,15 +1,11 @@
-import { useState } from 'react';
-
-const Sidebar = () => {
-  const [isOpen, setIsOpen] = useState(true);
-
+const Sidebar = ({ isOpen, setIsOpen }) => {
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
 
   return (
     <div
-      className={`flex ${isOpen ? 'min-w-64' : 'min-w-16'} transition-width duration-300 bg-base-200 text-white h-screen`}
+      className={`flex ${isOpen ? 'min-w-64' : 'w-2 md:min-w-16'} transition-width duration-300 bg-base-200 text-white h-screen fixed z-10`}
     >
       <div className="flex flex-col w-full">
         <div className="flex items-center relative p-4">
@@ -40,7 +36,7 @@ const Sidebar = () => {
           </span>
           <button
             onClick={toggleSidebar}
-            className={`btn btn-primary p-0 min-h-1 h-6 w-6 absolute right-0 transition-all duration-300 ${isOpen ? 'left-60' : 'left-12'}`}
+            className={`btn btn-primary p-0 min-h-1 h-6 w-6 absolute right-0 transition-all duration-300 top-2 ${isOpen ? 'left-60' : 'left-1 md:left-12'}`}
           >
             {isOpen ? '<' : '>'}
           </button>

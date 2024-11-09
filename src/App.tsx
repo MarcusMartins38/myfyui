@@ -7,17 +7,21 @@ import {
   selectTotalOutcome,
   selectTotal,
 } from './redux/transaction/transaction.selectors';
+import { useState } from 'react';
 
 function App() {
+  const [isOpen, setIsOpen] = useState(true);
   const totalIncome = useSelector(selectTotalIncome);
   const totalOutcome = useSelector(selectTotalOutcome);
   const total = useSelector(selectTotal);
 
   return (
-    <div className="flex flex-row w-full h-full">
-      <Sidebar />
+    <div className="flex flex-row w-full max-w-[1200px] h-full">
+      <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
 
-      <div className="px-6 pt-4 w-full h-full">
+      <div
+        className={`pr-6 pt-4 w-full h-full transition-all duration-300 pl-20 ${isOpen ? 'sm:pl-72' : 'sm:pl-20'}`}
+      >
         <header className="flex flex-col items-start mb-4">
           <h2 className="text-2xl font-bold">Welcome User!</h2>
           <p>Here’s what’s happening with your store today.</p>
@@ -25,8 +29,8 @@ function App() {
 
         <main className="flex flex-row w-full h-full">
           {/*Vertical Container*/}
-          <div className="flex flex-col h-full w-full">
-            <section className="flex flex-col md:flex-row justify-center">
+          <div className="flex flex-col items-center h-full w-full">
+            <section className="flex flex-col md:flex-row justify-center w-full">
               <Card
                 icon="I"
                 title="Total Income"
@@ -44,7 +48,7 @@ function App() {
                 iconBgColor="bg-error/60"
               />
             </section>
-            <div className="mb-4 w-full flex justify-center">
+            <div className="mb-4 w-full flex justify-center w-full">
               <Card
                 icon="T"
                 title="Total"
@@ -56,8 +60,6 @@ function App() {
             </div>
             <TransactionTable />
           </div>
-
-          <div>Qualquer coisa</div>
         </main>
       </div>
     </div>
