@@ -7,6 +7,7 @@ import {
   selectTotalOutcome,
   selectTotal,
 } from './redux/transaction/transaction.selectors';
+import TimeComparativeChart from './components/TimeComparativeChart';
 import { useState } from 'react';
 
 function App() {
@@ -59,6 +60,7 @@ function App() {
               />
             </div>
             <TransactionTable />
+            <TimeComparativeChart />
           </div>
         </main>
       </div>

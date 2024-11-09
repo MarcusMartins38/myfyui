@@ -44,7 +44,7 @@ export default function TransactionTable() {
     <>
       <TransactionModal />
 
-      <div className="bg-base-200 rounded-2xl max-w-3xl">
+      <div className="bg-base-200 w-full rounded-2xl max-w-3xl">
         <header className="flex flex-row justify-between w-[calc(100%-8px)] m-1 p-2">
           <button className="btn bg-success" onClick={handleOpen}>
             Add Transaction

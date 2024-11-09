@@ -3,11 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useDropzone } from 'react-dropzone';
 import { addTransaction } from '../redux/transaction/transaction.actions';
 import { setTransactionModalOpen } from '../redux/transactionModal/transactionModal.actions';
+import { DateRangePicker } from 'react-date-range';
 
 const TransactionModal = () => {
   const [name, setName] = useState('');
   const [amount, setAmount] = useState(0);
   const [image, setImage] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
   const { isOpen } = useSelector((store) => store.transactionModalReducer);
   const dispatch = useDispatch();
@@ -15,12 +17,10 @@ const TransactionModal = () => {
   const handleClose = () => dispatch(setTransactionModalOpen(false));
 
   const handleSave = () => {
-    const currentDate = new Date();
-
     const newTransaction = {
       id: Math.random() * 999,
       name,
-      date: currentDate,
+      date: selectedDate,
       amount: Number(amount),
       status: amount > 0 ? 'income' : 'outcome',
       image,
@@ -75,6 +75,18 @@ const TransactionModal = () => {
                 className="input input-bordered"
                 value={amount}
                 onChange={(e) => setAmount(Number(e.target.value))}
+              />
+            </div>
+
+            <div className="form-control mb-4">
+              <label className="label">
+                <span className="label-text">Date</span>
+              </label>
+              <input
+                type="date"
+                className="input input-bordered"
+                value={selectedDate}
+                onChange={(e) => setSelectedDate(e.target.value)} // Armazena a data como string
               />
             </div>
 
